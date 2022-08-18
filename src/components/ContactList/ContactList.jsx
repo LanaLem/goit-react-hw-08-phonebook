@@ -1,5 +1,4 @@
 import { ListOfContacts, Contact, DeleteButton } from './ContactList.styled';
-import { Box } from 'constants';
 import PropTypes from 'prop-types';
 
 export const ContactList = ({ contacts, onDeleteContact }) => {
