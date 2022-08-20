@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import { HiTrash } from 'react-icons/hi';
 
 export const ContactItem = styled.li`
-  display: flex;
-  align-items: center;
   padding: ${p => p.theme.space[2]}px;
   margin-bottom: ${p => p.theme.space[2]}px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-radius: ${p => p.theme.radii.normal};
 
   &:hover,
