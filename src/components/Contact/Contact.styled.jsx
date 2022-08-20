@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { HiTrash } from 'react-icons/hi';
 
-export const ContactItem = styled.li`
+export const ContactItem = styled.div`
   padding: ${p => p.theme.space[2]}px;
   margin-bottom: ${p => p.theme.space[2]}px;
   display: flex;

@@ -6,13 +6,13 @@ export const ContactList = ({ contacts, onDeleteContact }) => {
   return (
     <ListOfContacts>
       {contacts.map(({ id, name, number }) => (
-        <Contact
-          key={id}
-          id={id}
-          name={name}
-          number={number}
-          onDeleteContact={onDeleteContact}
-        />
+        <li key={id}>
+          <Contact
+            name={name}
+            number={number}
+            onDeleteContact={() => onDeleteContact(id)}
+          />
+        </li>
       ))}
     </ListOfContacts>
   );
