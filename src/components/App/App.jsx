@@ -18,6 +18,23 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const contactFromLS = JSON.parse(localStorage.getItem('contacts'));
+    if (contactFromLS) {
+      this.setState({
+        contacts: [...contactFromLS],
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { contacts } = this.state;
+
+    if (prevState.contacts !== contacts) {
+      return localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }
+
   onSubmitForm = ({ name, number }, action) => {
     const doubleContact = this.state.contacts.find(
       contact => contact.name === name
@@ -29,7 +46,7 @@ export class App extends Component {
           return {
             contacts: [
               ...prevState.contacts,
-              { name: name, id: nanoid(), number: number },
+              { id: nanoid(), name: name, number: number },
             ],
           };
         });
