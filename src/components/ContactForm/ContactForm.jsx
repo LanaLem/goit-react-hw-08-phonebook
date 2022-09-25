@@ -1,13 +1,15 @@
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import PropTypes from 'prop-types';
 import {
   InputForm,
   LabelForm,
   FormOfContact,
   ButtonForm,
 } from './ContactForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
+import { getContacts } from 'redux/selectors';
 
 const nameErrorMessage =
   "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan";
@@ -36,7 +38,18 @@ const schema = yup.object().shape({
 
 const initialValues = { name: '', number: '' };
 
-export const ContactForm = ({ onSubmitForm }) => {
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+
+  const onSubmitForm = ({ name, number }, action) => {
+    contacts.find(contact => contact.name === name)
+      ? Notify.warning(`${name} is already in contact`)
+      : dispatch(addContact(name, number));
+
+    action.resetForm();
+  };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -58,8 +71,4 @@ export const ContactForm = ({ onSubmitForm }) => {
       </FormOfContact>
     </Formik>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmitForm: PropTypes.func.isRequired,
 };

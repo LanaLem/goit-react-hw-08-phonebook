@@ -21,25 +21,19 @@ export const DeleteButton = styled.button`
   padding: ${p => p.theme.space[1]}px;
   border-radius: ${p => p.theme.radii.normal};
   border: none;
-  background-color: ${p => p.theme.colors.pink};
-  box-shadow: ${p => p.theme.shadow};
+  background-color: transparent;
 
   cursor: pointer;
-
-  &:hover,
-  &:focus {
-    background-color: ${p => p.theme.colors.darkPink};
-  }
 `;
 
 export const DeleteIcon = styled(HiTrash)`
-  color: ${p => p.theme.colors.darkPink};
+  color: ${p => p.theme.colors.pink};
 
   ${DeleteButton}:hover & {
-    color: ${p => p.theme.colors.pink};
+    color: ${p => p.theme.colors.darkPink};
   }
 
   ${DeleteButton}:focus & {
-    color: ${p => p.theme.colors.pink};
+    color: ${p => p.theme.colors.darkPink};
   }
 `;

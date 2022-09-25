@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Box } from '../../constants/Box';
 import {
   InputFilter,
@@ -6,8 +5,11 @@ import {
   IconSearch,
   FilterWrap,
 } from './Filter.styled';
+import { useDispatch } from 'react-redux';
+import { addFilter } from 'redux/contactsSlice';
 
-export const Filter = ({ onFilterInput }) => {
+export const Filter = () => {
+  const dispatch = useDispatch();
   return (
     <Box>
       <LabelFilter htmlFor="filter">
@@ -19,14 +21,10 @@ export const Filter = ({ onFilterInput }) => {
             name="filter"
             title="Filter contacts by name or by number"
             required
-            onChange={event => onFilterInput(event)}
+            onChange={event => dispatch(addFilter(event.target.value))}
           />
         </FilterWrap>
       </LabelFilter>
     </Box>
   );
-};
-
-Filter.propTypes = {
-  onFilterInput: PropTypes.func.isRequired,
 };
