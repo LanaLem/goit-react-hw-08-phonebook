@@ -6,7 +6,7 @@ import {
   FilterWrap,
 } from './Filter.styled';
 import { useDispatch } from 'react-redux';
-import { addFilter } from 'redux/contactsSlice';
+import { addFilter } from 'redux/filterSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();

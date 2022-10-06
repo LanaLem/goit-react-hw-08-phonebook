@@ -8,8 +8,8 @@ import {
   ButtonForm,
 } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { addContacts } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 
 const nameErrorMessage =
   "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan";
@@ -40,12 +40,13 @@ const initialValues = { name: '', number: '' };
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+
+  const contacts = useSelector(selectContacts);
 
   const onSubmitForm = ({ name, number }, action) => {
     contacts.find(contact => contact.name === name)
       ? Notify.warning(`${name} is already in contact`)
-      : dispatch(addContact(name, number));
+      : dispatch(addContacts({ name, number }));
 
     action.resetForm();
   };

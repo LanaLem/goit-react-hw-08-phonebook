@@ -3,8 +3,21 @@ import { GlobalStyle } from './App.styled';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { Filter } from '../Filter/Filter';
 import { ContactList } from '../ContactList/ContactList';
+import { Loader } from '../Loader/Loader';
+import { useEffect } from 'react';
+import { fetchAll } from 'redux/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectError, selectIsLoading } from 'redux/selectors';
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(fetchAll());
+  }, [dispatch]);
+
   return (
     <Box
       p={4}
@@ -23,7 +36,7 @@ export const App = () => {
         Contacts
       </Box>
       <Filter />
-      <ContactList />
+      {isLoading && !error ? <Loader /> : <ContactList />}
     </Box>
   );
 };
