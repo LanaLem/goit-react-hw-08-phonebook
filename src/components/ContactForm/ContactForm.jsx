@@ -1,15 +1,10 @@
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import {
-  InputForm,
-  LabelForm,
-  FormOfContact,
-  ButtonForm,
-} from './ContactForm.styled';
+import * as SC from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from 'redux/operations';
-import { selectContacts } from 'redux/selectors';
+import { addContacts } from 'redux/contacts/operations';
+import { selectContacts } from 'redux/contacts/selectors';
 
 const nameErrorMessage =
   "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan";
@@ -57,19 +52,19 @@ export const ContactForm = () => {
       validationSchema={schema}
       onSubmit={onSubmitForm}
     >
-      <FormOfContact>
-        <LabelForm htmlFor="name">
+      <SC.FormOfContact>
+        <SC.LabelForm htmlFor="name">
           Name
-          <InputForm type="text" name="name" />
+          <SC.InputForm type="text" name="name" />
           <ErrorMessage name="name" render={msg => Notify.warning(msg)} />
-        </LabelForm>
-        <LabelForm htmlFor="number">
+        </SC.LabelForm>
+        <SC.LabelForm htmlFor="number">
           Number
-          <InputForm type="tel" name="number" />
+          <SC.InputForm type="tel" name="number" />
           <ErrorMessage name="number" render={msg => Notify.warning(msg)} />
-        </LabelForm>
-        <ButtonForm type="submit">Add contact</ButtonForm>
-      </FormOfContact>
+        </SC.LabelForm>
+        <SC.ButtonForm type="submit">Add contact</SC.ButtonForm>
+      </SC.FormOfContact>
     </Formik>
   );
 };

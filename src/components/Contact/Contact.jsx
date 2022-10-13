@@ -1,19 +1,27 @@
-import { ContactItem, DeleteButton, DeleteIcon } from './Contact.styled';
+import * as SC from './Contact.styled';
 import PropTypes from 'prop-types';
+import Avatar from 'react-avatar';
 import { useDispatch } from 'react-redux';
-import { deleteContacts } from 'redux/operations';
+import { deleteContacts } from 'redux/contacts/operations';
+import { Box } from 'constants';
 
 export const Contact = ({ name, number, id }) => {
   const dispatch = useDispatch();
   return (
-    <ContactItem>
-      <p>
-        {name}: {number}
-      </p>
-      <DeleteButton type="button" onClick={() => dispatch(deleteContacts(id))}>
-        <DeleteIcon size={24} />
-      </DeleteButton>
-    </ContactItem>
+    <SC.ContactItem>
+      <Box display="flex" alignItems="center">
+        <Avatar round={true} size={40} name={name} />
+        <SC.P>
+          {name}: {number}
+        </SC.P>
+      </Box>
+      <SC.DeleteButton
+        type="button"
+        onClick={() => dispatch(deleteContacts(id))}
+      >
+        <SC.DeleteIcon size={24} />
+      </SC.DeleteButton>
+    </SC.ContactItem>
   );
 };
 

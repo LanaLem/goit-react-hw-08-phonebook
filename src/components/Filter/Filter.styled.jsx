@@ -29,6 +29,7 @@ export const FilterWrap = styled.div`
   width: 100%;
   border: 2px solid ${p => p.theme.colors.pink};
   border-radius: ${p => p.theme.radii.normal};
+  margin-top: ${p => p.theme.space[2]}px;
 
   ${LabelFilter}:hover & {
     border-color: ${p => p.theme.colors.darkPink};

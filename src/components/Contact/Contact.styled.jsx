@@ -15,6 +15,10 @@ export const ContactItem = styled.div`
   }
 `;
 
+export const P = styled.p`
+  margin-left: ${p => p.theme.space[2]}px;
+`;
+
 export const DeleteButton = styled.button`
   display: flex;
   align-items: flex-end;
